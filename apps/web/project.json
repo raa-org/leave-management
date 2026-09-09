@@ -1,0 +1,30 @@
+{
+  "name": "web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/web/src",
+  "projectType": "application",
+  "implicitDependencies": ["contracts"],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/web",
+        "command": "tsc -b && vite build"
+      },
+      "configurations": {
+        "development": { "command": "tsc -b && vite build --mode development" },
+        "staging": { "command": "tsc -b && vite build --mode staging" },
+        "demo": { "command": "tsc -b && vite build --mode demo" },
+        "production": { "command": "tsc -b && vite build --mode production" }
+      },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/web",
+        "command": "vite"
+      }
+    }
+  }
+}

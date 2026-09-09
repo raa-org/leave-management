@@ -1,0 +1,19 @@
+node_modules
+dist
+*.tsbuildinfo
+.nx/cache
+.nx/workspace-data
+.env
+.env.local
+.env.*.local
+.DS_Store
+*.log
+coverage
+.vscode
+.idea
+tmp
+# Local sanitization snapshot (modules + extra copies); not part of this branch
+/public-release/
+
+# Public GitHub snapshots (not for GitLab)
+/public-release/

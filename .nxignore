@@ -1,0 +1,5 @@
+# Per-task git worktrees provisioned by the orchestrator's TaskLoopRunner.
+# Each nested worktree mirrors the workspace layout and contains its own
+# apps/<id>/project.json files; without this exclusion Nx would scan into
+# them and register dozens of duplicate "phantom" projects.
+.task-worktrees/

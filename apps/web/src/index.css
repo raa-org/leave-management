@@ -1,0 +1,9 @@
+/* MUI CssBaseline owns the global reset (margins, box-sizing, typography).
+   Keep this file for app-level globals only. */
+:root {
+  color-scheme: light;
+}
+
+#root {
+  min-height: 100dvh;
+}

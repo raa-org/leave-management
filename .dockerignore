@@ -1,0 +1,13 @@
+.git
+.gitignore
+node_modules
+.npm
+.nx
+dist
+coverage
+.env
+.env.*
+!.env.example
+*.log
+docs
+*.xlsx

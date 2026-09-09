@@ -1,0 +1,42 @@
+{
+  "name": "@raa/leave-management",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raa-org/leave-management.git"
+  },
+  "description": "Leave Management System for tracking vacation and sick-leave balances and routing leave requests through an email approval flow.",
+  "engines": { "node": ">=22" },
+  "workspaces": ["apps/*", "libs/shared/*"],
+  "scripts": {
+    "build": "nx run-many --target=build --all",
+    "build:api": "nx build api",
+    "build:web": "nx build web",
+    "build:web:staging": "nx build web --configuration=staging",
+    "build:web:demo": "nx build web --configuration=demo",
+    "build:web:production": "nx build web --configuration=production",
+    "serve:api": "DEV_ENVIRONMENT=true nx serve api",
+    "serve:web": "nx serve web",
+    "start:api": "node apps/api/dist/main.js",
+    "typeorm": "TS_NODE_PROJECT=apps/api/tsconfig.app.json TS_NODE_TRANSPILE_ONLY=true typeorm-ts-node-commonjs -d apps/api/src/database/data-source.ts",
+    "migration:generate": "npm run typeorm -- migration:generate",
+    "migration:show": "npm run typeorm -- migration:show",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:revert": "npm run typeorm -- migration:revert",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@typescript-eslint/eslint-plugin": "^8.55.0",
+    "@typescript-eslint/parser": "^8.55.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "nx": "20.5.0",
+    "typescript": "5.8.3",
+    "vitest": "^4.0.18"
+  }
+}

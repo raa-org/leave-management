@@ -1,0 +1,30 @@
+# Copyright (c) 2026 Right&Above, LLC
+# SPDX-License-Identifier: MIT
+
+FROM node:24-alpine AS build
+
+WORKDIR /app
+
+RUN apk add --no-cache bash git
+
+COPY . .
+
+RUN npm ci --include=dev \
+    && npx nx run api:build --skip-nx-cache \
+    && test -d /app/apps/api/dist
+
+FROM node:24-alpine AS runtime
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+RUN apk add --no-cache bash tini
+
+COPY --from=build /app /app
+
+EXPOSE 3000
+
+ENTRYPOINT ["/sbin/tini", "--"]
+
+CMD ["sh", "-c", "npm run migration:run && npm run start:api"]
